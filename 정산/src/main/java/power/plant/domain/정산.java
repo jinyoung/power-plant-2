@@ -1,7 +1,6 @@
 package power.plant.domain;
 
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 import javax.persistence.*;
 import lombok.Data;
 import org.springframework.context.ApplicationContext;
@@ -32,7 +31,7 @@ public class 정산 {
     private Double mep;
 
     @ElementCollection
-    private List<시간별계량치> 시간별계량치;
+    private Map<String, 시간별계량치> 시간별계량치;
 
     @PostPersist
     public void onPostPersist() {
@@ -59,6 +58,15 @@ public class 정산 {
 
     public void calculate(CalculateCommand calculateCommand) {
         // implement the business logics here:
+
+        시간별계량치 시간별계량치 = new 시간별계량치();
+        시간별계량치.setHourCode(calculateCommand.getHourCode());
+        시간별계량치.setPower(calculateCommand.getGeneratedAmount());
+
+        if(get시간별계량치() == null)
+            set시간별계량치(new HashMap<>());
+
+        get시간별계량치().put(시간별계량치.getHourCode(), 시간별계량치);
 
         Calculated calculated = new Calculated(this);
         calculated.publishAfterCommit();

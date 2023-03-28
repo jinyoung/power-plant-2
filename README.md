@@ -1,5 +1,12 @@
 # 
 
+
+```
+http :8083/입찰 id="2023-03-13-yo" generatorType="수력"
+http :8081/계량 id="2023-03-13-yo-00" generatedAmount=10
+http :8082/정산
+```
+
 ## Model
 www.msaez.io/#/storming/power-plant-kor
 

@@ -12,7 +12,7 @@ import org.springframework.beans.BeanUtils;
 @NoArgsConstructor
 public class 시간별계량치 {
 
-    private Long hourCode;
+    private String hourCode;
 
     private Double power;
 

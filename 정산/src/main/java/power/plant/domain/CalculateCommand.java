@@ -11,5 +11,6 @@ public class CalculateCommand {
     private String subscriberId;
     private String plantId;
     private String generatorType;
+    private String hourCode;
     private Double generatedAmount;
 }

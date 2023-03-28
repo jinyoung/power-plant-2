@@ -12,12 +12,6 @@ public class 계량HateoasProcessor
 
     @Override
     public EntityModel<계량> process(EntityModel<계량> model) {
-        model.add(
-            Link
-                .of(model.getRequiredLink("self").getHref() + "/generate")
-                .withRel("generate")
-        );
-
         return model;
     }
 }

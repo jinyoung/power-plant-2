@@ -53,12 +53,23 @@ public class PolicyHandler {
         );
 
         CalculateCommand calculateCommand = new CalculateCommand();
+
         // implement:  Map command properties from event
+
+
+        String[] yearMonthDayPlantIdAndHourCode = powerGenerated.getId().split("-");
+        String 정산Id = yearMonthDayPlantIdAndHourCode[0] + "-" +yearMonthDayPlantIdAndHourCode[1] + "-" + yearMonthDayPlantIdAndHourCode[2] + "-" + yearMonthDayPlantIdAndHourCode[3];
+        // calculateCommand.setYearCode(yearMonthDayPlantIdAndHourCode[0]);
+        // calculateCommand.setMonthCode(yearMonthDayPlantIdAndHourCode[1]);
+        // calculateCommand.setDayCode(yearMonthDayPlantIdAndHourCode[2]);
+
+        calculateCommand.setHourCode(yearMonthDayPlantIdAndHourCode[4]);
+        calculateCommand.setGeneratedAmount(powerGenerated.getGeneratedAmount());
 
         정산Repository
             .findById(
                 // implement: Set the 정산 Id from one of PowerGenerated event's corresponding property
-                powerGenerated.getId()
+                정산Id
             )
             .ifPresent(정산 -> {
                 정산.calculate(calculateCommand);

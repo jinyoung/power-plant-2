@@ -17,26 +17,4 @@ public class 계량Controller {
 
     @Autowired
     계량Repository 계량Repository;
-
-    @RequestMapping(
-        value = "계량/{id}/generate",
-        method = RequestMethod.PUT,
-        produces = "application/json;charset=UTF-8"
-    )
-    public 계량 generate(
-        @PathVariable(value = "id") String id,
-        @RequestBody GenerateCommand generateCommand,
-        HttpServletRequest request,
-        HttpServletResponse response
-    ) throws Exception {
-        System.out.println("##### /계량/generate  called #####");
-        Optional<계량> optional계량 = 계량Repository.findById(id);
-
-        optional계량.orElseThrow(() -> new Exception("No Entity Found"));
-        계량 계량 = optional계량.get();
-        계량.generate(generateCommand);
-
-        계량Repository.save(계량);
-        return 계량;
-    }
 }

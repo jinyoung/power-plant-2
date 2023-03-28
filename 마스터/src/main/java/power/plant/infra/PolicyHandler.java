@@ -21,6 +21,9 @@ public class PolicyHandler {
     @Autowired
     발전기정보Repository 발전기정보Repository;
 
+    @Autowired
+    시장가Repository 시장가Repository;
+
     @StreamListener(KafkaProcessor.INPUT)
     public void whatever(
         @Payload String eventString,

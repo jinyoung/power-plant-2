@@ -41,6 +41,11 @@ public class 정산 {
         power.plant.external.발전기정보Service 발전기정보Service = applicationContext().getBean(power.plant.external.발전기정보Service.class);
         power.plant.external.발전기정보 마스터 = 
             발전기정보Service.발전기정보view( {TODO: please put the id} );
+        /** TODO: Get request to 시장가
+        power.plant.external.시장가viewQuery 시장가viewQuery = new power.plant.external.시장가viewQuery();
+        power.plant.external.시장가Service 시장가Service = applicationContext().getBean(power.plant.external.시장가Service.class);
+        power.plant.external.시장가 마스터 = 
+            시장가Service.시장가view( {TODO: please put the id} );
         */
 
         MeterCreated meterCreated = new MeterCreated(this);

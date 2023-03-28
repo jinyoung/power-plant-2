@@ -51,6 +51,7 @@ pluralCaseList.push( {plural: "정산", pascal: "정산"} )
 pluralCaseList.push( {plural: "입찰", pascal: "입찰"} )
 
 pluralCaseList.push( {plural: "발전기정보", pascal: "발전기정보"} )
+pluralCaseList.push( {plural: "시장가", pascal: "시장가"} )
 
 
 Vue.prototype.$ManagerLists.forEach(function(item, idx) {

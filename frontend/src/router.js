@@ -16,6 +16,8 @@ import 입찰Detail from "./components/listers/입찰Detail"
 
 import 발전기정보Manager from "./components/listers/발전기정보Cards"
 import 발전기정보Detail from "./components/listers/발전기정보Detail"
+import 시장가Manager from "./components/listers/시장가Cards"
+import 시장가Detail from "./components/listers/시장가Detail"
 
 
 export default new Router({
@@ -64,6 +66,16 @@ export default new Router({
                 path: '/발전기정보/:id',
                 name: '발전기정보Detail',
                 component: 발전기정보Detail
+            },
+            {
+                path: '/시장가',
+                name: '시장가Manager',
+                component: 시장가Manager
+            },
+            {
+                path: '/시장가/:id',
+                name: '시장가Detail',
+                component: 시장가Detail
             },
 
 

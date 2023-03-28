@@ -64,6 +64,9 @@ logging:
 api:
   url:
     마스터: localhost:8084
+api:
+  url:
+    마스터: localhost:8084
 
 server:
   port: 8082
@@ -114,6 +117,9 @@ spring:
           destination: power.plant
           contentType: application/json
 
+api:
+  url:
+    마스터: 마스터:8080
 api:
   url:
     마스터: 마스터:8080

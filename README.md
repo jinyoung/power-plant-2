@@ -55,6 +55,7 @@ mvn spring-boot:run
 - 마스터
 ```
  http :8088/발전기정보 id="id" 열효율="열효율" 
+ http :8088/시장가 id="id" 가격="가격" 
 ```
 
 

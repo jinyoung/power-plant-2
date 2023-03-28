@@ -6,7 +6,7 @@
         </v-card-title>
 
         <v-card-text>
-            <Number label="HourCode" v-model="value.hourCode" :editMode="editMode"/>
+            <String label="HourCode" v-model="value.hourCode" :editMode="editMode"/>
             <Number label="Power" v-model="value.power" :editMode="editMode"/>
             <Number label="MarketPrice" v-model="value.marketPrice" :editMode="editMode"/>
         </v-card-text>
@@ -43,7 +43,7 @@
             }
             if(typeof this.value === 'object') {
                 if(!('hourCode' in this.value)) {
-                    this.value.hourCode = 0;
+                    this.value.hourCode = '';
                 }
                 if(!('power' in this.value)) {
                     this.value.power = 0;

@@ -58,7 +58,7 @@ public class PolicyHandler {
         정산Repository
             .findById(
                 // implement: Set the 정산 Id from one of PowerGenerated event's corresponding property
-
+                powerGenerated.getId()
             )
             .ifPresent(정산 -> {
                 정산.calculate(calculateCommand);
@@ -83,6 +83,24 @@ public class PolicyHandler {
         );
 
         정산 정산 = new 정산();
+
+        try{
+            String[] parts = event.getId().split("-");
+            String Year = parts[0];
+            String Month = parts[1];
+            String Day = parts[2];
+
+            정산.setYearCode(Year);
+            정산.setMonthCode(Month);
+            정산.setDayCode(Day);
+        }catch(Exception e){
+            throw new IllegalArgumentException("id 형식이 잘못되었습니다 (yyyy-mm-dd-[plantId]):"+ event.getId());
+        }
+
+
+        정산.setId(입찰됨.getId());
+
+        //정산.set
         정산Repository.save(정산);
 
         // Manual Offset Commit //

@@ -27,8 +27,8 @@ public class 계량 {
 
     @PostPersist
     public void onPostPersist() {
-        급전지시됨 급전지시됨 = new 급전지시됨(this);
-        급전지시됨.publishAfterCommit();
+        // 급전지시됨 급전지시됨 = new 급전지시됨(this);
+        // 급전지시됨.publishAfterCommit();
     }
 
     public static 계량Repository repository() {

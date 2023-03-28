@@ -17,33 +17,19 @@ public class 입찰  {
 
     
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    
-    
-    
-    
     private String id;    
-    
-    
     
     private String subscriberId;    
     
-    
-    
     private String plantId;    
     
-    
-    
     private Double generatedAmount;    
-    
-    
     
     private String generatorType;
 
     @PostPersist
     public void onPostPersist(){
        
-        */
 
         입찰됨 입찰됨 = new 입찰됨(this);
         입찰됨.publishAfterCommit();

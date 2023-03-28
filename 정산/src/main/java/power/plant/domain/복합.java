@@ -8,7 +8,6 @@ import org.springframework.beans.BeanUtils;
 
 @Entity
 @Data
-public class 복합 {
+public class 복합 extends 비중앙{
 
-    private Long id;
 }

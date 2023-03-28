@@ -8,7 +8,6 @@ import org.springframework.beans.BeanUtils;
 
 @Entity
 @Data
-public class 중앙 {
+public class 중앙 extends 정산{
 
-    private Long id;
 }

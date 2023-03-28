@@ -8,7 +8,5 @@ import org.springframework.beans.BeanUtils;
 
 @Entity
 @Data
-public class 양수 {
-
-    private Long id;
+public class 양수 extends 중앙{
 }

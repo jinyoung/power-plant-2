@@ -8,7 +8,6 @@ import org.springframework.beans.BeanUtils;
 
 @Entity
 @Data
-public class 수력 {
+public class 수력 extends 비중앙{
 
-    private Long id;
 }

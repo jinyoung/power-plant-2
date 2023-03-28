@@ -8,7 +8,5 @@ import org.springframework.beans.BeanUtils;
 
 @Entity
 @Data
-public class 원자력 {
-
-    private Long id;
+public class 원자력 extends 비중앙{
 }

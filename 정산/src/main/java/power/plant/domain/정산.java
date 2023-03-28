@@ -14,7 +14,7 @@ import power.plant.정산Application;
 public class 정산 {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    //@GeneratedValue(strategy = GenerationType.AUTO)
     private String id;
 
     private String yearCode;
@@ -31,7 +31,7 @@ public class 정산 {
 
     private Double mep;
 
-    @OneToMany
+    @ElementCollection
     private List<시간별계량치> 시간별계량치;
 
     @PostPersist

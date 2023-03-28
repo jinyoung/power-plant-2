@@ -1,7 +1,6 @@
 package power.plant.domain;
 
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 import javax.persistence.*;
 import lombok.Data;
 import org.springframework.context.ApplicationContext;
@@ -13,11 +12,11 @@ import power.plant.마스터Application;
 public class 시장가 {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    //@GeneratedValue(strategy = GenerationType.AUTO)
+    private String id;
 
-    @Embedded
-    private 가격 가격;
+    @ElementCollection
+    private List<가격> 가격;
 
     public static 시장가Repository repository() {
         시장가Repository 시장가Repository = applicationContext()

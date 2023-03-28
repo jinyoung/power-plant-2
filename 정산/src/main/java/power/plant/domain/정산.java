@@ -40,12 +40,20 @@ public class 정산 {
         power.plant.external.발전기정보Service 발전기정보Service = applicationContext().getBean(power.plant.external.발전기정보Service.class);
         power.plant.external.발전기정보 마스터 = 
             발전기정보Service.발전기정보view( {TODO: please put the id} );
-        /** TODO: Get request to 시장가
+
+        /** TODO: Get request to 시장가        */
         power.plant.external.시장가viewQuery 시장가viewQuery = new power.plant.external.시장가viewQuery();
         power.plant.external.시장가Service 시장가Service = applicationContext().getBean(power.plant.external.시장가Service.class);
-        power.plant.external.시장가 마스터 = 
-            시장가Service.시장가view( {TODO: please put the id} );
-        */
+
+        String[] YearMonthDayAndPlantId = getId().split("-");
+
+        String 시장가Id = YearMonthDayAndPlantId[0] +"-" + YearMonthDayAndPlantId[1] +"-" + YearMonthDayAndPlantId[2];
+
+        power.plant.external.시장가 시장가 = 
+            시장가Service.시장가view(시장가Id);
+
+        
+
 
         MeterCreated meterCreated = new MeterCreated(this);
         meterCreated.publishAfterCommit();

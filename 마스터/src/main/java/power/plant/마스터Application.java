@@ -10,7 +10,7 @@ import power.plant.config.kafka.KafkaProcessor;
 @SpringBootApplication
 @EnableBinding(KafkaProcessor.class)
 @EnableFeignClients
-public class MasterApplication {
+public class 마스터Application {
 
     public static ApplicationContext applicationContext;
 

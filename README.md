@@ -2,6 +2,8 @@
 
 
 ```
+http :8084/시장가 id="2023-03-13" 가격[0][hourCode]="00" 가격[0][price]=150 가격[1][hourCode]="01" 가격[1][price]=100 가격[2][hourCode]="02" 가격[2][price]=200
+
 http :8083/입찰 id="2023-03-13-yo" generatorType="수력"
 http :8081/계량 id="2023-03-13-yo-00" generatedAmount=10
 http :8082/정산

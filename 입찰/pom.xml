@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>power.plant</groupId>
-	<artifactId>입찰</artifactId>
+	<artifactId>bid</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>입찰</name>
 	<description>Demo project for Spring Boot</description>

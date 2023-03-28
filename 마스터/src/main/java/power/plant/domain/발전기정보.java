@@ -1,0 +1,26 @@
+package power.plant.domain;
+
+import java.util.Date;
+import java.util.List;
+import javax.persistence.*;
+import lombok.Data;
+import power.plant.마스터Application;
+
+@Entity
+@Table(name = "발전기정보_table")
+@Data
+public class 발전기정보 {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    private Double 열효율;
+
+    public static 발전기정보Repository repository() {
+        발전기정보Repository 발전기정보Repository = 마스터Application.applicationContext.getBean(
+            발전기정보Repository.class
+        );
+        return 발전기정보Repository;
+    }
+}

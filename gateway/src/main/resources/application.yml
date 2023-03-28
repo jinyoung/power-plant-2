@@ -1,0 +1,82 @@
+server:
+  port: 8088
+
+---
+
+spring:
+  profiles: default
+  cloud:
+    gateway:
+      routes:
+        - id: 계량
+          uri: http://localhost:8081
+          predicates:
+            - Path=/계량/**, 
+        - id: 정산
+          uri: http://localhost:8082
+          predicates:
+            - Path=/정산/**, 
+        - id: 입찰
+          uri: http://localhost:8083
+          predicates:
+            - Path=/입찰/**, 
+        - id: 마스터
+          uri: http://localhost:8084
+          predicates:
+            - Path=/발전기정보/**, 
+        - id: frontend
+          uri: http://localhost:8080
+          predicates:
+            - Path=/**
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins:
+              - "*"
+            allowedMethods:
+              - "*"
+            allowedHeaders:
+              - "*"
+            allowCredentials: true
+
+
+---
+
+spring:
+  profiles: docker
+  cloud:
+    gateway:
+      routes:
+        - id: 계량
+          uri: http://계량:8080
+          predicates:
+            - Path=/계량/**, 
+        - id: 정산
+          uri: http://정산:8080
+          predicates:
+            - Path=/정산/**, 
+        - id: 입찰
+          uri: http://입찰:8080
+          predicates:
+            - Path=/입찰/**, 
+        - id: 마스터
+          uri: http://마스터:8080
+          predicates:
+            - Path=/발전기정보/**, 
+        - id: frontend
+          uri: http://frontend:8080
+          predicates:
+            - Path=/**
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins:
+              - "*"
+            allowedMethods:
+              - "*"
+            allowedHeaders:
+              - "*"
+            allowCredentials: true
+
+server:
+  port: 8080

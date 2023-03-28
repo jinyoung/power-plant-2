@@ -5,12 +5,12 @@
 ### Cluster에 hpa-for-정산 HorizontalPodAutoscaler를 생성하려면 아래의 명령어를 실행하세요.
 
 ```
-kubectl create -f https://minio.msaez.io/labs-msaez.io/yamlStorage/power-plant-kor/jyjang%40uengine.org/HorizontalPodAutoscaler/hpa-for-%EC%A0%95%EC%82%B0.yaml?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=minio%2F20230328%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230328T105047Z&X-Amz-Expires=60&X-Amz-SignedHeaders=host&X-Amz-Signature=713edee91c3aac210e51bdcd27d9ff3a4600526fd067354077adad6fd0323a44
+kubectl create -f https://minio.msaez.io/labs-msaez.io/yamlStorage/power-plant-kor/jyjang%40uengine.org/HorizontalPodAutoscaler/hpa-for-%EC%A0%95%EC%82%B0.yaml?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=minio%2F20230328%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230328T114930Z&X-Amz-Expires=60&X-Amz-SignedHeaders=host&X-Amz-Signature=e04702dea97185feff0310b1025b212fc21ca948066b6b4934b8f8a314ce4fc8
 ```
 - Yaml 파일에 명시된 스펙으로 hpa-for-정산 HorizontalPodAutoscaler를 생성합니다.
 
 ```
-kubectl apply -f https://minio.msaez.io/labs-msaez.io/yamlStorage/power-plant-kor/jyjang%40uengine.org/HorizontalPodAutoscaler/hpa-for-%EC%A0%95%EC%82%B0.yaml?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=minio%2F20230328%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230328T105047Z&X-Amz-Expires=60&X-Amz-SignedHeaders=host&X-Amz-Signature=713edee91c3aac210e51bdcd27d9ff3a4600526fd067354077adad6fd0323a44
+kubectl apply -f https://minio.msaez.io/labs-msaez.io/yamlStorage/power-plant-kor/jyjang%40uengine.org/HorizontalPodAutoscaler/hpa-for-%EC%A0%95%EC%82%B0.yaml?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=minio%2F20230328%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230328T114930Z&X-Amz-Expires=60&X-Amz-SignedHeaders=host&X-Amz-Signature=e04702dea97185feff0310b1025b212fc21ca948066b6b4934b8f8a314ce4fc8
 ```
 - Create가 된 상태라면 hpa-for-정산 HorizontalPodAutoscaler의 수정이 이루어지고, Create가 된 상태가 아니라면 hpa-for-정산 HorizontalPodAutoscaler를 Create 해주는 명령어입니다.  
 #

@@ -9,4 +9,4 @@ import power.plant.domain.*;
     path = "발전기정보"
 )
 public interface 발전기정보Repository
-    extends PagingAndSortingRepository<발전기정보, Long> {}
+    extends PagingAndSortingRepository<발전기정보, String> {}

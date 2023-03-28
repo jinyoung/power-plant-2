@@ -21,7 +21,7 @@ public class 입찰  {
     
     private String subscriberId;    
     
-    private String plantId;    
+    private String modelId;    
     
     private Double generatedAmount;    
     

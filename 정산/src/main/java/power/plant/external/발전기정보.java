@@ -8,4 +8,5 @@ public class 발전기정보 {
 
     private Long id;
     private Double 열효율;
+    private Double vEPC;
 }

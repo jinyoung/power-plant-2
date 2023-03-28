@@ -16,6 +16,8 @@ import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import power.plant.정산Application;
 import power.plant.config.kafka.KafkaProcessor;
 import power.plant.domain.*;
 import power.plant.external.시장가Service;
@@ -102,7 +104,13 @@ public class PolicyHandler {
             "\n\n##### listener CreateMeter : " + 입찰됨 + "\n\n"
         );
 
-        정산 정산 = new 정산();
+        정산 정산;
+        try {
+            정산 = (정산) Class.forName("power.plant.domain." + 입찰됨.getGeneratorType()).newInstance();
+
+        } catch (Exception e) {
+            throw new IllegalArgumentException("해당 generatorType 이 없거나 기타오류입니다.", e);
+        }
 
         try{
             String[] parts = event.getId().split("-");
@@ -119,6 +127,7 @@ public class PolicyHandler {
 
 
         정산.setId(입찰됨.getId());
+        정산.setModelId(입찰됨.getModelId());
 
         
         String[] YearMonthDayAndPlantId = 입찰됨.getId().split("-");
@@ -142,6 +151,8 @@ public class PolicyHandler {
         });
 
         정산.set시간별계량치(가격설정된시간별계량치);
+
+        정산.init();
 
 
         //정산.set

@@ -13,10 +13,11 @@ import power.plant.마스터Application;
 public class 발전기정보 {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    //@GeneratedValue(strategy = GenerationType.AUTO)
+    private String id;
 
     private Double 열효율;
+    private Double vEPC;
 
     public static 발전기정보Repository repository() {
         발전기정보Repository 발전기정보Repository = applicationContext()

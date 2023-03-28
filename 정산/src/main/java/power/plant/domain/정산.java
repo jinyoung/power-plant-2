@@ -10,7 +10,12 @@ import power.plant.정산Application;
 @Entity
 @Table(name = "정산_table")
 @Data
-public class 정산 {
+@DiscriminatorColumn(
+    discriminatorType = DiscriminatorType.STRING,
+    name = "generatorType",
+    columnDefinition = "CHAR(20)"
+)
+public abstract class 정산 {
 
     @Id
     //@GeneratedValue(strategy = GenerationType.AUTO)
@@ -24,7 +29,7 @@ public class 정산 {
 
     private String subscriberId;
 
-    private String platId;
+    private String modelId;
 
     private Double generationAmount;
 
@@ -35,15 +40,10 @@ public class 정산 {
 
     @PrePersist
     public void onPostPersist() {
-        /** TODO: Get request to 발전기정보
-        power.plant.external.발전기정보viewQuery 발전기정보viewQuery = new power.plant.external.발전기정보viewQuery();
-        power.plant.external.발전기정보Service 발전기정보Service = applicationContext().getBean(power.plant.external.발전기정보Service.class);
-        power.plant.external.발전기정보 마스터 = 
-            발전기정보Service.발전기정보view( {TODO: please put the id} );
+
 
         /** TODO: Get request to 시장가        */
 
-        //repository().save(this);
 
         MeterCreated meterCreated = new MeterCreated(this);
         meterCreated.publishAfterCommit();
@@ -66,9 +66,22 @@ public class 정산 {
 
         시간별계량치.setPower(calculateCommand.getGeneratedAmount());
 
+
+        setGenerationAmount(calculateMEP());
+        
+
         //get시간별계량치().put(시간별계량치.getHourCode(), 시간별계량치);
 
         Calculated calculated = new Calculated(this);
         calculated.publishAfterCommit();
     }
+
+    abstract public Double calculateMEP();
+    abstract public Double calculateSMP();
+
+    public void init(){
+
+    }
+
+
 }

@@ -5,12 +5,12 @@
 ### Cluster에 gateway Ingress를 생성하려면 아래의 명령어를 실행하세요.
 
 ```
-$ kubectl create -f https://minio.msaez.io/labs-msaez.io/yamlStorage/power-plant-kor/jyjang%40uengine.org/Ingress/gateway.yaml?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=minio%2F20230328%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230328T102935Z&X-Amz-Expires=60&X-Amz-SignedHeaders=host&X-Amz-Signature=c8e3d26565a1aa3b4a4185ea77456f76871f88a0721a743c5a93d26611f13766
+$ kubectl create -f https://minio.msaez.io/labs-msaez.io/yamlStorage/power-plant-kor/jyjang%40uengine.org/Ingress/gateway.yaml?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=minio%2F20230328%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230328T105047Z&X-Amz-Expires=60&X-Amz-SignedHeaders=host&X-Amz-Signature=98661c2958f94725851270ad92741cd1bd0827d4cec66d30a4887bc9ea5d4ddc
 ```
 - Yaml 파일에 명시된 스펙으로 gateway Ingress를 생성합니다.
 
 ```
-$ kubectl apply -f https://minio.msaez.io/labs-msaez.io/yamlStorage/power-plant-kor/jyjang%40uengine.org/Ingress/gateway.yaml?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=minio%2F20230328%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230328T102935Z&X-Amz-Expires=60&X-Amz-SignedHeaders=host&X-Amz-Signature=c8e3d26565a1aa3b4a4185ea77456f76871f88a0721a743c5a93d26611f13766
+$ kubectl apply -f https://minio.msaez.io/labs-msaez.io/yamlStorage/power-plant-kor/jyjang%40uengine.org/Ingress/gateway.yaml?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=minio%2F20230328%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230328T105047Z&X-Amz-Expires=60&X-Amz-SignedHeaders=host&X-Amz-Signature=98661c2958f94725851270ad92741cd1bd0827d4cec66d30a4887bc9ea5d4ddc
 ```
 - Create가 된 상태라면 gateway Ingress의 수정이 이루어지고, Create가 된 상태가 아니라면 gateway Ingress를 Create 해주는 명령어입니다.  
 #

@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 import javax.persistence.*;
 import lombok.Data;
+import org.springframework.context.ApplicationContext;
 import power.plant.마스터Application;
 
 @Entity
@@ -18,9 +19,12 @@ public class 발전기정보 {
     private Double 열효율;
 
     public static 발전기정보Repository repository() {
-        발전기정보Repository 발전기정보Repository = 마스터Application.applicationContext.getBean(
-            발전기정보Repository.class
-        );
+        발전기정보Repository 발전기정보Repository = applicationContext()
+            .getBean(발전기정보Repository.class);
         return 발전기정보Repository;
+    }
+
+    public static ApplicationContext applicationContext() {
+        return 마스터Application.applicationContext;
     }
 }

@@ -64,9 +64,6 @@ logging:
 api:
   url:
     마스터: localhost:8084
-api:
-  url:
-    마스터: localhost:8084
 
 server:
   port: 8082
@@ -120,7 +117,5 @@ spring:
 api:
   url:
     마스터: 마스터:8080
-api:
-  url:
-    마스터: 마스터:8080
+
 

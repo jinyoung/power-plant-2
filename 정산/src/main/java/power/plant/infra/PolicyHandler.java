@@ -2,6 +2,11 @@ package power.plant.infra;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.naming.NameParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.stream.annotation.StreamListener;
@@ -13,6 +18,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import power.plant.config.kafka.KafkaProcessor;
 import power.plant.domain.*;
+import power.plant.external.시장가Service;
 
 @Service
 @Transactional(rollbackFor = Exception.class)
@@ -20,6 +26,9 @@ public class PolicyHandler {
 
     @Autowired
     정산Repository 정산Repository;
+
+    @Autowired
+    시장가Service 사장가조회서비스;
 
     @StreamListener(KafkaProcessor.INPUT)
     public void whatever(
@@ -110,6 +119,30 @@ public class PolicyHandler {
 
 
         정산.setId(입찰됨.getId());
+
+        
+        String[] YearMonthDayAndPlantId = 입찰됨.getId().split("-");
+
+        String 시장가Id = YearMonthDayAndPlantId[0] +"-" + YearMonthDayAndPlantId[1] +"-" + YearMonthDayAndPlantId[2];
+
+        power.plant.external.시장가 시장가 = 
+            사장가조회서비스.시장가view(시장가Id);
+
+        List<Map> 가격List = (List<Map>)시장가.get가격();
+        Map<String, 시간별계량치> 가격설정된시간별계량치 = (new HashMap<>());
+
+        가격List.forEach(가격 -> {
+           // Map 가격Map = (Map)가격;
+
+            시간별계량치 가격을설정할시간별계량치 = new 시간별계량치();
+            가격을설정할시간별계량치.setHourCode((String)가격.get("hourCode"));
+            가격을설정할시간별계량치.setMarketPrice((Double)가격.get("price"));
+            가격설정된시간별계량치.put(가격을설정할시간별계량치.getHourCode(), 가격을설정할시간별계량치);
+
+        });
+
+        정산.set시간별계량치(가격설정된시간별계량치);
+
 
         //정산.set
         정산Repository.save(정산);

@@ -33,7 +33,7 @@ public class 정산 {
     @ElementCollection
     private Map<String, 시간별계량치> 시간별계량치;
 
-    @PostPersist
+    @PrePersist
     public void onPostPersist() {
         /** TODO: Get request to 발전기정보
         power.plant.external.발전기정보viewQuery 발전기정보viewQuery = new power.plant.external.발전기정보viewQuery();
@@ -42,18 +42,8 @@ public class 정산 {
             발전기정보Service.발전기정보view( {TODO: please put the id} );
 
         /** TODO: Get request to 시장가        */
-        power.plant.external.시장가viewQuery 시장가viewQuery = new power.plant.external.시장가viewQuery();
-        power.plant.external.시장가Service 시장가Service = applicationContext().getBean(power.plant.external.시장가Service.class);
 
-        String[] YearMonthDayAndPlantId = getId().split("-");
-
-        String 시장가Id = YearMonthDayAndPlantId[0] +"-" + YearMonthDayAndPlantId[1] +"-" + YearMonthDayAndPlantId[2];
-
-        power.plant.external.시장가 시장가 = 
-            시장가Service.시장가view(시장가Id);
-
-        
-
+        //repository().save(this);
 
         MeterCreated meterCreated = new MeterCreated(this);
         meterCreated.publishAfterCommit();
@@ -72,14 +62,11 @@ public class 정산 {
     public void calculate(CalculateCommand calculateCommand) {
         // implement the business logics here:
 
-        시간별계량치 시간별계량치 = new 시간별계량치();
-        시간별계량치.setHourCode(calculateCommand.getHourCode());
+        시간별계량치 시간별계량치 = get시간별계량치().get(calculateCommand.getHourCode());
+
         시간별계량치.setPower(calculateCommand.getGeneratedAmount());
 
-        if(get시간별계량치() == null)
-            set시간별계량치(new HashMap<>());
-
-        get시간별계량치().put(시간별계량치.getHourCode(), 시간별계량치);
+        //get시간별계량치().put(시간별계량치.getHourCode(), 시간별계량치);
 
         Calculated calculated = new Calculated(this);
         calculated.publishAfterCommit();

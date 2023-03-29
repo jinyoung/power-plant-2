@@ -10,8 +10,8 @@ mvn spring-boot:run
 
 ```
 mvn package -B -DskipTests
-docker build -t username/계량:v1 .
-docker run username/계량:v1
+docker build -t jinyoung/metering:v1 .
+docker run jinyoung/metering:v1
 ```
 
 ## Push images and running in Kubernetes
@@ -20,7 +20,7 @@ docker run username/계량:v1
 docker login 
 # in case of docker hub, enter your username and password
 
-docker push username/계량:v1
+docker push jinyoung/metering:v1
 ```
 
 Edit the deployment.yaml under the /kubernetes directory:

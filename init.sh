@@ -13,5 +13,12 @@ sudo .././aws/install
 curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
 sudo mv /tmp/eksctl /usr/local/bin
 
+curl -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-cli-422.0.0-linux-x86_64.tar.gz
+tar -xf google-cloud-cli-422.0.0-linux-x86_64.tar.gz
+./google-cloud-sdk/install.sh
+gcloud components install gke-gcloud-auth-plugin
+
+
+
 cd kafka
 docker-compose up

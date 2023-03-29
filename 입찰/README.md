@@ -10,8 +10,8 @@ mvn spring-boot:run
 
 ```
 mvn package -B -DskipTests
-docker build -t username/입찰:v1 .
-docker run username/입찰:v1
+docker build -t jinyoung/bid:v2 .
+docker push jinyoung/bid:v2
 ```
 
 ## Push images and running in Kubernetes
@@ -20,15 +20,15 @@ docker run username/입찰:v1
 docker login 
 # in case of docker hub, enter your username and password
 
-docker push username/입찰:v1
+docker push jinyoung/bid:v1
 ```
 
 Edit the deployment.yaml under the /kubernetes directory:
 ```
     spec:
       containers:
-        - name: 입찰
-          image: username/입찰:latest   # change this image name
+        - name: bid
+          image: username/bid:latest   # change this image name
           ports:
             - containerPort: 8080
 
@@ -41,7 +41,7 @@ kubectl apply -f kubernetes/deployment.yaml
 
 See the pod status:
 ```
-kubectl get pods -l app=입찰
+kubectl get pods -l app=bid
 ```
 
 If you have no problem, you can connect to the service by opening a proxy between your local and the kubernetes by using this command:

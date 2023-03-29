@@ -10,8 +10,8 @@ mvn spring-boot:run
 
 ```
 mvn package -B -DskipTests
-docker build -t username/마스터:v1 .
-docker run username/마스터:v1
+docker build -t jinyoung/master:v2 .
+docker push jinyoung/master:v2
 ```
 
 ## Push images and running in Kubernetes
@@ -20,7 +20,7 @@ docker run username/마스터:v1
 docker login 
 # in case of docker hub, enter your username and password
 
-docker push username/마스터:v1
+docker push jinyoung/master:v1
 ```
 
 Edit the deployment.yaml under the /kubernetes directory:

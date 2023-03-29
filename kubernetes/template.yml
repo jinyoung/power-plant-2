@@ -1,24 +1,171 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: power-plant-gateway
+spec:
+  selector:
+    istio: ingressgateway # use istio default controller
+  servers:
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+    - "*"
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: power-plant
+spec:
+  hosts:
+  - "*"
+  gateways:
+  - power-plant-gateway
+  http:
+  - match:
+    - uri:
+        prefix: /meterings
+    route:
+    - destination:
+        host: metering
+        subset: v2
+        port:
+          number: 8080
+
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: power-plant
+spec:
+  hosts:
+  - "*"
+  gateways:
+  - power-plant-gateway
+  http:
+  - match:
+    - uri:
+        exact: /billings
+    route:
+    - destination:
+        host: billing
+        port:
+          number: 8080
+
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: power-plant
+spec:
+  hosts:
+  - "*"
+  gateways:
+  - power-plant-gateway
+  http:
+  - match:
+    - uri:
+        exact: /bids
+    route:
+    - destination:
+        host: bid
+        port:
+          number: 8080
+
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: power-plant
+spec:
+  hosts:
+  - "*"
+  gateways:
+  - power-plant-gateway
+  http:
+  - match:
+    - uri:
+        exact: /model-infos
+    - uri:
+        exact: /prices
+    route:
+    - destination:
+        host: master
+        port:
+          number: 8080
+
+---
+
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: metering
+spec:
+  host: metering
+  subsets:
+  - name: v2
+    labels:
+      version: v2
+
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: billing
+spec:
+  host: billing
+  subsets:
+  - name: v1
+    # labels:
+    #   version: v1
+
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: master
+spec:
+  host: master
+  subsets:
+  - name: v1
+    # labels:
+    #   version: v1
+
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: bid
+spec:
+  host: bid
+  subsets:
+  - name: v1
+    # labels:
+    #   version: v1
+
 ---
 
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: 계량
+  name: metering
   labels:
-    app: 계량
+    app: metering
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: 계량
+      app: metering
   template:
     metadata:
       labels:
-        app: 계량
+        app: metering
+        version: v2
     spec:
       containers:
-        - name: 계량
-          image: username/계량:latest
+        - name: metering
+          image: jinyoung/metering:v2
           ports:
             - containerPort: 8080
           readinessProbe:
@@ -43,22 +190,22 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: 정산
+  name: billing
   labels:
-    app: 정산
+    app: billing
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: 정산
+      app: billing
   template:
     metadata:
       labels:
-        app: 정산
+        app: billing
     spec:
       containers:
-        - name: 정산
-          image: username/정산:latest
+        - name: billing
+          image: jinyoung/billing:v2
           ports:
             - containerPort: 8080
           readinessProbe:
@@ -83,22 +230,22 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: 입찰
+  name: bid
   labels:
-    app: 입찰
+    app: bid
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: 입찰
+      app: bid
   template:
     metadata:
       labels:
-        app: 입찰
+        app: bid
     spec:
       containers:
-        - name: 입찰
-          image: username/입찰:latest
+        - name: bid
+          image: jinyoung/bid:v2
           ports:
             - containerPort: 8080
           readinessProbe:
@@ -123,22 +270,22 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: 마스터
+  name: master
   labels:
-    app: 마스터
+    app: master
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: 마스터
+      app: master
   template:
     metadata:
       labels:
-        app: 마스터
+        app: master
     spec:
       containers:
-        - name: 마스터
-          image: username/마스터:latest
+        - name: master
+          image: jinyoung/master:v2
           ports:
             - containerPort: 8080
           readinessProbe:
@@ -165,15 +312,15 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: 계량
+  name: metering
   labels:
-    app: 계량
+    app: metering
 spec:
   ports:
     - port: 8080
       targetPort: 8080
   selector:
-    app: 계량
+    app: metering
 
 
 ---
@@ -182,15 +329,15 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: 정산
+  name: billing
   labels:
-    app: 정산
+    app: billing
 spec:
   ports:
     - port: 8080
       targetPort: 8080
   selector:
-    app: 정산
+    app: billing
 
 
 ---
@@ -199,15 +346,15 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: 입찰
+  name: bid
   labels:
-    app: 입찰
+    app: bid
 spec:
   ports:
     - port: 8080
       targetPort: 8080
   selector:
-    app: 입찰
+    app: bid
 
 
 ---
@@ -216,13 +363,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: 마스터
+  name: master
   labels:
-    app: 마스터
+    app: master
 spec:
   ports:
     - port: 8080
       targetPort: 8080
   selector:
-    app: 마스터
+    app: master
 

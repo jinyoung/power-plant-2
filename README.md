@@ -13,6 +13,21 @@ http :8081/계량 id="2023-03-13-yo-00" generatedAmount=10
 http :8082/정산
 ```
 
+
+
+# GCloud 연결
+```
+gcloud container clusters get-credentials delete-this-cluster-3-29 --zone asia-northeast1-a --project eventstorming-tool
+
+kubectl apply -f template.yml 
+kubectl get svc istio-ingressgateway -n istio-system
+
+
+
+```
+
+
+
 ## Model
 www.msaez.io/#/storming/power-plant-kor
 
